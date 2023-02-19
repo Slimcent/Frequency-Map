@@ -1,16 +1,35 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+from tkinter import messagebox
 
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+# def frequency_map(text, k):
+#     freq = {}
+#     n = len(text)
+#     for i in range(n - k + 1):
+#         pattern = text[i:i + k]
+#         freq[pattern] = 0
+#
+#     for i in range(n - k + 1):
+#         j = text[i:i + k]
+#         freq[j] += 1
+#     return freq
+
+def frequency_map(text, k):
+    freq = {}                           # Initialize dictionary
+    n = len(text)                       # text_len
+    for i in range(n-k+1):              # sliding pattern start index
+        pattern = text[i:i+k]           # Search for this pattern
+        count = 0                       # Initialize pattern matching count
+        for j in range(n - k + 1):      # Sliding text start index
+            if text[j:j+k] == pattern:  # Text substring matches pattern
+                count += 1              # Count matching pattern
+        freq[pattern] = count           # How many found?
+    return freq
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+text = 'CGATATATCCATAG'
+k = 3
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+frequencyMap = frequency_map(text, k)
+
+title = "Frequency Map"
+messagebox.showinfo(title, f"The frequency map is {frequencyMap}")
